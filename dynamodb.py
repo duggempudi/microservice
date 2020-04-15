@@ -6,7 +6,12 @@ class GreetingHandler:
 
     def __init__(self, table_name):
         try:
-            db = boto3.resource('dynamodb')
+            session = boto3.Session(
+                        aws_access_key_id='',
+                        aws_secret_access_key='',
+                        region_name=''
+)
+            db = session.resource('dynamodb')
 
             self.table = db.create_table(
                 TableName=table_name,
